@@ -1,0 +1,54 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Edit</th>
+    <th scope="col">Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of assets" (click)="selectAsset(item)">
+    <td class="w-100">{{ item.name }} {{ item.type }}</td>
+    <td><button type="button" class="btn btn-secondary" (click)="editAsset(item.id)" data-bs-target="#editModal" data-bs-toggle="modal">Edit</button></td>
+    <td><button type="button" class="btn btn-danger" (click)="removeAsset(item.id)">Delete</button></td>
+  </tr>
+  </tbody>
+</table>
+<div>{{ selected }} selected/{{ assets.length }} total</div>
+<div aria-hidden="true" aria-labelledby="assetsModalLabel" class="modal fade" id="editModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="assetsModalLabel">Modal title</h5>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+      </div>
+      <div class="modal-body">
+        <form (submit)="saveAsset()" [formGroup]="editForm" class="coordinates-form">
+          <div class="mb-3">
+            <label class="form-label" for="name">Name</label>
+            <input class="form-control" formControlName="name" id="name" required type="text">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="type">Type</label>
+            <select class="form-select" formControlName="type" id="type" required>
+              <option value="truck">Truck</option>
+              <option value="trailer">Trailer</option>
+              <option value="transport">Transport</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="latitude">Latitude</label>
+            <input class="form-control" formControlName="latitude" id="latitude" required type="number">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="longitude">Longitude</label>
+            <input class="form-control" formControlName="longitude" id="longitude" required type="number">
+          </div>
+          <button [disabled]="!editForm.valid" class="btn btn-primary" data-bs-dismiss="modal" type="submit">Save
+            changes
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

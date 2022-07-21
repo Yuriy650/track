@@ -3,15 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {MapComponent} from "./components/map/map.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AssetsListComponent} from "./components/assets-list/assets-list.component";
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MapComponent,
+    AssetsListComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+      FormsModule,
+      ReactiveFormsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
