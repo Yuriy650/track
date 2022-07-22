@@ -14,7 +14,6 @@ export class AssetsListComponent implements OnChanges {
   @Input() assets: Asset[] = [];
   @Output() coords = new EventEmitter<Coords>();
   @Output() isSelectedAsset = new EventEmitter<boolean>()
-
   public editForm: FormGroup;
   public selected = 0;
   public currentAsset!: Asset;
@@ -22,7 +21,6 @@ export class AssetsListComponent implements OnChanges {
   constructor(private assetsService: AssetsService, private readonly fb: FormBuilder) {
     this.editForm = this.buildForm()
   }
-
   ngOnChanges(changes: SimpleChanges) {
   this.assets = changes.assets.currentValue;
   }
@@ -35,7 +33,6 @@ export class AssetsListComponent implements OnChanges {
       longitude: ['', [Validators.required]]
     })
   }
-
   public selectAsset(item: Asset) {
     this.isSelected = true
     this.selected = 1;
@@ -45,21 +42,18 @@ export class AssetsListComponent implements OnChanges {
     this.coords.emit(coord)
     this.isSelectedAsset.emit(this.isSelected)
   }
-
   public removeAsset(id: number) {
     if(id) {
       this.assetsService.deleteAsset(id)
       this.assets = this.assets.filter(item => item.id !== id);
     }
   }
-
   public saveAsset() {
     const newAsset = Object.assign({id: this.editForm.value.id}, this.editForm.value);
     this.assetsService.setAsset(newAsset);
     this.assets = this.assetsService.getAssets();
     this.editForm.reset()
   }
-
   public editAsset(id: number) {
     // @ts-ignore
     this.currentAsset = JSON.parse(localStorage.getItem(id.toString()));

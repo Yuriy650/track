@@ -1,38 +1,31 @@
 import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from "@angular/core";
-import { Coords } from "src/app/model/asset.interface";
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-
 export class MapComponent implements OnInit, OnChanges {
   @Input() latitude!: string;
   @Input() longitude!: string
   @ViewChild('map', {static: true}) mapElement!: ElementRef;
   constructor() {
   }
-
   ngOnChanges(changes: SimpleChanges) {
     const latitude = changes.latitude.currentValue;
     const longitude = changes.longitude.currentValue;
     this.renderMap(latitude, longitude);
   }
-
   ngOnInit() {
     this.renderMap();
   }
-
   loadMap = (latitude: string, longitude: string) => {
     // @ts-ignore
     let map = new window['google'].maps.Map(this.mapElement.nativeElement, {
       center: {lat: +latitude, lng: +longitude},
       zoom: 4
     });
-
     // @ts-ignore
-
     let marker = new window['google'].maps.Marker({
       position: {lat: +latitude, lng: +longitude},
       map: map,
@@ -41,7 +34,6 @@ export class MapComponent implements OnInit, OnChanges {
       // @ts-ignore
       animation: window['google'].maps.Animation.DROP,
     });
-
     let contentString = '<div id="content">' +
       '<div id="siteNotice">' +
       '</div>' +
@@ -50,18 +42,14 @@ export class MapComponent implements OnInit, OnChanges {
       '<p>{{  }}</p>' +
       '</div>' +
       '</div>';
-
     // @ts-ignore
     let infowindow = new window['google'].maps.InfoWindow({
       content: contentString
     });
-
     marker.addListener('click', function () {
       infowindow.open(map, marker);
     });
-
   }
-
   renderMap(latitude = '49', longitude = '24') {
     // @ts-ignore
     window[`initMap`] = () => {

@@ -35,7 +35,6 @@ export class AppComponent implements OnInit, OnDestroy{
       longitude: ['', [Validators.required]]
     })
   }
-
   public addAsset() {
     const newAsset = Object.assign({id: Date.now()}, this.assetsForm.value);
     this.assetsService.setAsset(newAsset)
