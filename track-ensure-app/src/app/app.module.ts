@@ -7,6 +7,7 @@ import {MapComponent} from "./components/map/map.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AssetsListComponent} from "./components/assets-list/assets-list.component";
 import {GoogleMapComponent} from "./components/google-map/google-map.component";
+import {ModalFormComponent} from "./components/modal-form/modal-form.component";
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import {GoogleMapComponent} from "./components/google-map/google-map.component";
     AppComponent,
     MapComponent,
     AssetsListComponent,
-    GoogleMapComponent
+    GoogleMapComponent,
+    ModalFormComponent
   ],
     imports: [
         BrowserModule,

@@ -19,7 +19,8 @@ export class AssetsListComponent implements OnChanges {
   public currentAsset!: Asset;
   public isSelected = false;
   constructor(private assetsService: AssetsService, private readonly fb: FormBuilder) {
-    this.editForm = this.buildForm()
+    this.editForm = this.buildForm();
+    this.assets = this.assetsService.getAssets()
   }
   ngOnChanges(changes: SimpleChanges) {
   this.assets = changes.assets.currentValue;
