@@ -1,4 +1,8 @@
 <app-map [latitude]="latitude" [longitude]="longitude" class="w-100"></app-map>
+<!--<app-google-map class="w-100"
+                [latitude]="latitude"
+                [longitude]="longitude"
+                [assets]="assets" [isSelected]="isSelected"></app-google-map>-->
 <div class="w-100">
   <div class="d-flex flex-column align-items-center justify-content-between">
     <button class="btn btn-primary" data-bs-target="#assetsModal" data-bs-toggle="modal" type="button">
@@ -41,6 +45,7 @@
         </div>
       </div>
     </div>
-    <app-assets-list [assets]="assets" (coords)="getCoords($event)" class="w-100"></app-assets-list>
+    <app-assets-list [assets]="assets" (coords)="getCoords($event)" (isSelectedAsset)="triggerSelect($event)" class="w-100"></app-assets-list>
   </div>
 </div>
+

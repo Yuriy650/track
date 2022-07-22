@@ -28,7 +28,7 @@ export class MapComponent implements OnInit, OnChanges {
     // @ts-ignore
     let map = new window['google'].maps.Map(this.mapElement.nativeElement, {
       center: {lat: +latitude, lng: +longitude},
-      zoom: 8
+      zoom: 4
     });
 
     // @ts-ignore
@@ -42,22 +42,12 @@ export class MapComponent implements OnInit, OnChanges {
       animation: window['google'].maps.Animation.DROP,
     });
 
-    // @ts-ignore
-    let marker2 = new window['google'].maps.Marker({
-      position: {lat: 36, lng: 42},
-      map: map,
-      title: '',
-      draggable: true,
-      // @ts-ignore
-      animation: window['google'].maps.Animation.DROP,
-    });
-
     let contentString = '<div id="content">' +
       '<div id="siteNotice">' +
       '</div>' +
-      '<h3 id="thirdHeading" class="thirdHeading">laratutorials.com</h3>' +
+      '<h3 id="thirdHeading" class="thirdHeading">{{ Track Ensure Maps }}</h3>' +
       '<div id="bodyContent">' +
-      '<p>Track Ensure Maps</p>' +
+      '<p>{{  }}</p>' +
       '</div>' +
       '</div>';
 

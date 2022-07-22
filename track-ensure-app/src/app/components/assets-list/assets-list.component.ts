@@ -13,10 +13,12 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class AssetsListComponent implements OnChanges {
   @Input() assets: Asset[] = [];
   @Output() coords = new EventEmitter<Coords>();
+  @Output() isSelectedAsset = new EventEmitter<boolean>()
 
   public editForm: FormGroup;
   public selected = 0;
   public currentAsset!: Asset;
+  public isSelected = false;
   constructor(private assetsService: AssetsService, private readonly fb: FormBuilder) {
     this.editForm = this.buildForm()
   }
@@ -35,11 +37,13 @@ export class AssetsListComponent implements OnChanges {
   }
 
   public selectAsset(item: Asset) {
+    this.isSelected = true
     this.selected = 1;
     const coord = {
       latitude: item.latitude,
       longitude: item.longitude}
     this.coords.emit(coord)
+    this.isSelectedAsset.emit(this.isSelected)
   }
 
   public removeAsset(id: number) {

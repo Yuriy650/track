@@ -17,6 +17,7 @@ export class AppComponent implements OnInit, OnDestroy{
   public assets: Asset[] = [];
   public _asset$ = Subscription.EMPTY;
   public assetsForm: FormGroup;
+  public isSelected = false;
   constructor(private assetsService: AssetsService, private readonly fb: FormBuilder) {
     this.assetsForm = this.buildForm();
  }
@@ -44,5 +45,8 @@ export class AppComponent implements OnInit, OnDestroy{
   public getCoords(value: Coords) {
     this.latitude = value.latitude;
     this.longitude = value.longitude
+  }
+  public triggerSelect(value: boolean) {
+    this.isSelected = value
   }
 }
